@@ -1,8 +1,10 @@
 const express = require("express");
+
 const app = express();
 const cors = require("cors");
 const sql = require("mssql");
 const { dbConfig } = require("./configs");
+
 const appPool = new sql.ConnectionPool(dbConfig);
 
 require("dotenv").config();
@@ -21,4 +23,5 @@ appPool
   .catch((err) => console.log("Database Connection Failed", err));
 
 const employeeRoute = require("./routes/employee.route");
+
 employeeRoute(app);
