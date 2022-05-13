@@ -6,6 +6,6 @@ module.exports = {
   server: process.env.DB_SERVER,
   database: process.env.DB_DATABASE,
   options: {
-    trustServerCertificate: true, // change to true for local dev / self-signed certs
-  },
+    trustServerCertificate: true // change to true for local dev / self-signed certs
+  }
 };

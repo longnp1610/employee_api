@@ -1,5 +1,6 @@
+const employeeController = require("../controllers/employee.controller");
+
 module.exports = (app) => {
-  const employeeController = require("../controllers/employee.controller");
   app.get("/api/employee", employeeController.getAll);
   app.get("/api/employee/:id", employeeController.getById);
   app.post("/api/employee/create", employeeController.create);

@@ -11,8 +11,13 @@ module.exports = async (sqlString) => {
         recordset: response.recordset || []
       };
     }
-    return { isSuccess: false };
+    return {
+      isSuccess: false
+    };
   } catch (error) {
-    return { isSuccess: false, error: error.message };
+    return {
+      isSuccess: false,
+      error: error.message
+    };
   }
 };

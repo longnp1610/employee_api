@@ -4,17 +4,31 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["airbnb-base"],
+  "extends": ["airbnb-base", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-
+  "plugins": ["prettier"],
   "rules": {
     "indent": ["error", 2],
     "quotes": ["error", "double"],
     "linebreak-style": 0,
-    "object-curly-newline": ["error", { "multiline": true }],
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": "always",
+        "ObjectPattern": {
+          "multiline": true
+        },
+        "ImportDeclaration": {
+          "multiline": true,
+          "minProperties": 2
+        },
+        "ExportDeclaration": "always"
+      }
+    ],
     "comma-dangle": ["error", "never"],
-    "no-console": 0
+    "no-console": "off",
+    "object-shorthand": "off"
   }
 }

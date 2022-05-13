@@ -1,6 +1,5 @@
 const { v4: uuidv4 } = require("uuid");
 const sqlQuery = require("../services/sqlQuery");
-const Employee = require("../models/Employee");
 
 exports.getAll = async (req, res) => {
   const { id } = req.query;
@@ -12,7 +11,9 @@ exports.getAll = async (req, res) => {
   if (response.isSuccess) {
     res.status(200).json(response.recordset);
   } else {
-    res.status(400).send({ message: "No data in database." });
+    res.status(400).send({
+      message: "No data in database."
+    });
   }
 };
 
@@ -24,7 +25,9 @@ exports.getById = async (req, res) => {
   if (response.isSuccess) {
     res.status(200).json(response.recordset);
   } else {
-    res.status(400).send({ message: "No data in database." });
+    res.status(400).send({
+      message: "No data in database."
+    });
   }
 };
 
@@ -38,9 +41,13 @@ exports.create = async (req, res) => {
   );
   console.log(response);
   if (response.isSuccess) {
-    res.status(201).send({ message: "User created successful!!" });
+    res.status(201).send({
+      message: "User created successful!!"
+    });
   } else {
-    res.status(400).send({ error: response.error });
+    res.status(400).send({
+      error: response.error
+    });
   }
 };
 
@@ -49,16 +56,13 @@ exports.edit = async (req, res) => {
   const { name, address, salary } = req.body;
   const user = await sqlQuery(`SELECT * FROM employee WHERE id = '${id}'`);
   if (!user.recordset) {
-    res.status(400).send({ message: "User not found !!" });
+    res.status(400).send({
+      message: "User not found !!"
+    });
     return;
   }
 
-  const employee = new Employee(
-    user.recordset[0].name,
-    user.recordset[0].gender,
-    user.recordset[0].address,
-    user.recordset[0].salary
-  );
+  const [employee] = user.recordset;
 
   const response = await sqlQuery(
     `UPDATE employee SET name = '${name || employee.name}', gender = '${
@@ -69,9 +73,13 @@ exports.edit = async (req, res) => {
   );
   console.log(response);
   if (response.isSuccess) {
-    res.status(201).send({ message: "User updated successful!!" });
+    res.status(201).send({
+      message: "User updated successful!!"
+    });
   } else {
-    res.status(400).send({ error: response.error });
+    res.status(400).send({
+      error: response.error
+    });
   }
 };
 
@@ -81,8 +89,12 @@ exports.delete = async (req, res) => {
   );
 
   if (response.isSuccess) {
-    res.status(200).json({ message: "User deleted successful." });
+    res.status(200).json({
+      message: "User deleted successful."
+    });
   } else {
-    res.status(400).send({ message: "User not exist." });
+    res.status(400).send({
+      message: "User not exist."
+    });
   }
 };

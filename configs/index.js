@@ -1,3 +1,5 @@
 const dbConfig = require("./db.config");
 
-module.exports = { dbConfig: dbConfig };
+module.exports = {
+  dbConfig
+};
